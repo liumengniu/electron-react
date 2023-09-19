@@ -1,8 +1,9 @@
 ## 开发流程
 
-### 更新内嵌web端 check-list
+### 开发阶段
 
 ```
+开发环境
 先 npm run build:test:web
 再 npm run build
 
