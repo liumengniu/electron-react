@@ -1,21 +1,41 @@
 {
   "name": "electron-basic",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": "Kevin <15111205994@163.com>",
   "private": true,
+  "main": "main.js",
+  "homepage": ".",
+  "description": "Electron Basic Program",
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "electron-log": "^4.4.8",
+    "electron-updater": "^6.1.4",
+    "node-cmd": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dumi": "cross-env APP_ROOT=dumi dumi dev",
+    "dumi-build": "cross-env APP_ROOT=dumi dumi build",
+    "start:web": "cross-env REACT_APP_ENVIRONMENT=development craco start",
+    "start": "electron . dev",
+    "startAll": "concurrently \"npm run start:web\" \"npm run start\"",
+    "test": "electron . test",
+    "build:test:web": "env-cmd -f .env.test craco build",
+    "build:web": "cross-env REACT_APP_ENVIRONMENT=production craco build",
+    "build": "rimraf release && electron-builder --ia32 --x64",
+    "build:deb": "electron-builder --linux deb tar.xz",
+    "build:deb:arm64": "electron-builder --linux deb --arm64",
+    "build:linux": "electron-builder --linux",
+    "build:linux:arm64": "electron-builder --linux --arm64",
+    "build:appimage:arm64": "electron-builder --linux appimage --arm64",
+    "build:dir": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +54,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.13.8",
+    "cross-env": "^7.0.3",
+    "electron": "^26.2.1",
+    "electron-builder": "^24.6.4",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack-bundle-analyzer": "^4.9.1"
   }
 }
