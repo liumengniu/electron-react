@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+## 开发流程
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 更新内嵌web端 check-list
 
-## Available Scripts
+```
+先 npm run build:test:web
+再 npm run build
 
-In the project directory, you can run:
+正式环境
+先 npm run build:web
+再 npm run build
 
-### `npm start`
+启动测试环境： npm run start:web
+启动开发环境： npm run start 可以进行调试
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+electron-builder 安装失败--需要设置淘宝镜像
+npm config set electron_mirror = "https://npm.taobao.org/mirrors/electron/"
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 生产部署流程
 
-### `npm test`
+### 1 更新内嵌web端 check-list
+```
+1、检查环境配置文件（包括基础请求/存储地址）
+2、jenkins 编译部署web生产包
+```
+### 2 更新windows桌面端 check-list
+```
+1、检查环境配置文件（包括基础请求/存储地址）
+2、jenkins 编译部署web生产包
+3、main.js的 loadURL需要改成web端远程地址
+4、修改依赖表（package.json）的版本号，改为最新版本（比之前的版本要高）
+5、打包编译生产端，然后将自动更新所需要的文件（exe,block.map,yml）上传至自动更新源目录地址
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3 更新麒麟桌面端 check-list（需要使用虚拟机打包）
+```
+1、检查环境配置文件（包括基础请求/存储地址）
+2、jenkins 编译部署web生产包 npm run build:web
+3、main.js的 loadURL需要改成web端远程地址
+4、修改依赖表（package.json）的版本号，改为最新版本（比之前的版本要高）
+5、打包编译生产端，编译命令 npm run build:appimage:arm64 （需要Linux环境，虚拟机真机都可以），然后将自动更新所需要的文件（xxx-arm64.AppImage,latest-linux-arm64.yml）上传至自动更新源目录地址(首次则不需要)
+PS：有时候某些墙外依赖下载需要多尝试几次
+```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4 更新linux桌面端 check-list（客户暂时没有使用linux桌面系统，可不编译生产）
+```
+1、检查环境配置文件（包括基础请求/存储地址）
+2、jenkins 编译部署web生产包
+3、main.js的 loadURL需要改成web端远程地址
+4、修改依赖表（package.json）的版本号，改为最新版本（比之前的版本要高）
+5、打包编译生产端，编译命令 build:linux （需要Linux环境，虚拟机真机都可以），然后将自动更新所需要的文件（xxx.AppImage,latest-linux.yml）上传至自动更新源目录地址(首次则不需要)
+PS：有时候某些墙外依赖下载需要多尝试几次
+```
