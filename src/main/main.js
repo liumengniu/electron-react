@@ -40,7 +40,7 @@ const createWindow = () => {
     transparent: true,
     useContentSize: true,
     // frame: false,
-    icon: process.platform === "linux" ? path.join(`${__dirname}/static/icons/256x256.png`) : path.join("static", `icons/favicon.ico`),
+    icon: process.platform === "linux" ? path.join(__dirname, "../../", "./static/icons/256x256.png") : path.join(__dirname, "../../", `./static/icons/favicon.ico`),
     webPreferences: {
       webviewTag: true,
       preload: path.join(__dirname, "preload.js"),
@@ -61,18 +61,18 @@ const createWindow = () => {
   if (mode === "dev") {
     mainWindow.loadURL("http://localhost:1718");
   } else if (mode === "test") {
-    mainWindow.loadFile(path.join(__dirname, "build/index.html"));
+    mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html"));
   } else {
     // mainWindow.loadURL(
     //   `https://www.cjkwb.cn?${new Date().getTime()}` //正式环境
     // );
-    mainWindow.loadFile(path.join(__dirname, "build/index.html")); // 测试环境
+    mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html")); // 测试环境
   }
 
   // 开发/测试环境，打开开发者工具
-  if (mode === "dev" || mode === "test") {
+  // if (mode === "dev" || mode === "test") {
     mainWindow.webContents.openDevTools();
-  }
+  // }
 };
 
 /**

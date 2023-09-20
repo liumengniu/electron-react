@@ -22,17 +22,17 @@ win:
 # Linux 特定配置
 linux:
   target: AppImage
-  category: Government Affairs
+  category: Electron Basic Program
 
 # 包含文件
 files:
   - "build/**/*"
-  - "main.js"
-  - "preload.js"
+  - "src/main/main.js"
+  - "src/main/preload.js"
 
 # 额外的资源目录
 extraResources:
-  - from: "./extraResources/**"
+  - from: "extraResources/**"
     to: "."
 
 # NSIS 安装程序配置（仅适用于 Windows）

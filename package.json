@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Kevin <15111205994@163.com>",
   "private": true,
-  "main": "main.js",
+  "main": "./src/main/main.js",
   "homepage": ".",
   "description": "Electron Basic Program",
   "dependencies": {
