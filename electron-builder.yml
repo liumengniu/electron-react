@@ -32,8 +32,7 @@ files:
 
 # 额外的资源目录
 extraResources:
-  - from: "extraResources/**"
-    to: "."
+  - "extraResources/**"
 
 # NSIS 安装程序配置（仅适用于 Windows）
 nsis:
