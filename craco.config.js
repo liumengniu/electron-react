@@ -33,6 +33,8 @@ module.exports = {
       ], [])
     ],
     configure: (webpackConfig, { env: webpackEnv, paths }) => {
+      webpackConfig.devtool = process.env.NODE_ENV === "development" ? "source-map" : false;
+      webpackConfig.entry = path.resolve(__dirname, 'src', 'renderer/entry/index.js')
       webpackConfig.resolve.fallback = {
         "path": false
       };
@@ -135,7 +137,6 @@ module.exports = {
     plugins: [
       ...whenProd(
         () => [
-          ["import", { libraryName: "antd", style: true }],
           ["@babel/plugin-proposal-decorators", { legacy: true }]
         ],
         []
