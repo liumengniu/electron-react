@@ -24,7 +24,7 @@
     "dumi-build": "cross-env APP_ROOT=dumi dumi build",
     "start:web": "cross-env REACT_APP_ENVIRONMENT=development craco start",
     "start:electron": "electron . dev",
-    "start": "concurrently \"cross-env BROWSER=none npm run start:web\" \"wait-on http://localhost:1718 && electron .\"",
+    "start": "concurrently \"cross-env BROWSER=none npm run start:web\" \"wait-on http://localhost:1718 && electron . dev\"",
     "test": "electron . test",
     "build:test:web": "env-cmd -f .env.test craco build",
     "build:web": "cross-env REACT_APP_ENVIRONMENT=production craco build",
