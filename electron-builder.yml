@@ -25,6 +25,8 @@ linux:
   icon: "static/icons/256x256.png"
   target: AppImage
   category: Electron Basic Program
+  desktop:
+    icon: "static/icons/256x256.png"
 
 # 包含文件
 files:
