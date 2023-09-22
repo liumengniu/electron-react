@@ -6,6 +6,7 @@ extends: null
 appId: com.electron.basic.client
 productName: electron基础模板
 directories:
+  buildResources: static
   # 指定构建输出目录
   output: release
 
