@@ -21,6 +21,7 @@ win:
 
 # Linux 特定配置
 linux:
+  icon: "static/icons/256x256.png"
   target: AppImage
   category: Electron Basic Program
 
