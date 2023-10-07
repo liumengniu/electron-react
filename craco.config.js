@@ -13,6 +13,7 @@ module.exports = {
   devServer: {
     port: 1718,
     open: false
+    
   },
   webpack: {
     alias: {
