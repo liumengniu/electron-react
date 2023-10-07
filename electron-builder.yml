@@ -52,6 +52,6 @@ nsis:
 # 自动更新配置
 publish:
   provider: generic
-  url: "https://www.cjkwb.cn/map/client"
+  url: "https://www.xxx.cn/client"
 
 
