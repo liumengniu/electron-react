@@ -8,7 +8,7 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('electronAPI', {
 	/**
-	 * ====================================  渲染进程 -> 主进程（单向）  =======================================
+	 * ====================================  1、渲染进程 -> 主进程（单向）  =======================================
 	 */
 	/**
 	 * 设置当前路由
@@ -56,11 +56,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
 	 */
 	reload: () => ipcRenderer.send('reload'),
 	/**
-	 * ====================================== 渲染进程 -> 主进程(双向)  =======================================
+	 * ====================================== 2、渲染进程 -> 主进程(双向)  =======================================
 	 */
 	getVersion: () => ipcRenderer.invoke('getVersion'),
 	/**
-	 * ====================================== 主进程 -> 渲染进程  =======================================
+	 * ====================================== 3、主进程 -> 渲染进程  =======================================
 	 */
 	downloadProgress: (callback) => ipcRenderer.on('downloadProgress', callback),
 	isUpdateNow: (callback) => ipcRenderer.on('isUpdateNow', callback),

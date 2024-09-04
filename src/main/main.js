@@ -40,7 +40,7 @@ const createWindow = () => {
     transparent: true,
     useContentSize: true,
     // frame: false,
-    icon: process.platform === "linux" ? path.join(__dirname, "../../", "./static/icons/256x256.png") : path.join(__dirname, "../../", `./static/icons/favicon.ico`),
+    icon: process.platform === "linux" ? path.join(__dirname, "../../", "./static/icons/256x256.png") : path.join(__dirname, "../../", `./src/static/icons/256x256.ico`),
     webPreferences: {
       webviewTag: true,
       preload: path.join(__dirname, "preload.js"),
@@ -60,13 +60,8 @@ const createWindow = () => {
   // 加载 index.html
   if (mode === "dev") {
     mainWindow.loadURL("http://localhost:1718");
-  } else if (mode === "test") {
-    mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html"));
-  } else {
-    // mainWindow.loadURL(
-    //   `https://www.cjkwb.cn?${new Date().getTime()}` //正式环境
-    // );
-    mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html")); // 测试环境
+  } {
+    mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html")); // 生产环境
   }
 
   // 开发/测试环境，打开开发者工具
@@ -111,13 +106,13 @@ if (!goTheLock) {
 /**
  *=========================================================================
  *=                                                                       =
- *=                       3.渲染进程的回调                                   =
+ *=                          3.渲染进程的回调                                =
  *=                                                                       =
  *=========================================================================
  */
 
 /**
- * 路由切换
+ * 3.1路由切换
  */
 function changeWidth(mainWindow) {
   if (!mainWindow.isFullScreen()) {
@@ -127,7 +122,7 @@ function changeWidth(mainWindow) {
 }
 
 /**
- * 接收路由切换的通讯
+ * 3.2接收路由切换的通讯
  */
 ipcMain.on("currentRouter", (event, arg) => {
   // 动态调整宽度
@@ -144,13 +139,13 @@ ipcMain.on("currentRouter", (event, arg) => {
 });
 
 /**
- * 最小化
+ * 3.3最小化
  */
 ipcMain.on("window-min", (event, arg) => {
   mainWindow.minimize();
 });
 /**
- * 最大化
+ * 3.4最大化
  */
 ipcMain.on("window-max", (event, arg) => {
   if (mainWindow.isMaximized()) {
@@ -160,7 +155,7 @@ ipcMain.on("window-max", (event, arg) => {
   }
 });
 /**
- * 关闭
+ * 3.5 关闭
  */
 ipcMain.on("window-close", (event, arg) => {
   mainWindow.close();
@@ -168,7 +163,7 @@ ipcMain.on("window-close", (event, arg) => {
 });
 
 /**
- * webview
+ * 3.6webview
  */
 ipcMain.on("init-browser-view", (event, arg) => {
   const { screen } = require("electron");
@@ -181,7 +176,7 @@ ipcMain.on("init-browser-view", (event, arg) => {
 });
 
 /**
- * 在用户的默认浏览器中打开 URL
+ * 3.7在用户的默认浏览器中打开 URL
  */
 ipcMain.on("openExternal", (event, arg) => {
   shell.openExternal(arg);
@@ -195,7 +190,7 @@ function openBrowser(url) {
 }
 
 /**
- * 执行cmd脚本
+ * 3.8执行cmd脚本
  */
 ipcMain.on("shellCmd", (event, arg) => {
   let cmdStr = "";
@@ -206,7 +201,6 @@ ipcMain.on("shellCmd", (event, arg) => {
   try {
     fs.exists(scriptPath, function (isExists) {
       if (isExists) {
-        // cmdStr = `"python"` + " " + scriptPath + " " + params;
         cmdStr = `python ${scriptPath} ${params}`;
         if (cmdStr) {
           cmd.run(cmdStr, function (err, data, stderr) {
@@ -224,20 +218,20 @@ ipcMain.on("shellCmd", (event, arg) => {
   }
 });
 /**
- * 拖拽窗体顶部
+ * 3.9拖拽窗体顶部
  */
 ipcMain.on("moveApplication", (event, pos) => {
   mainWindow && mainWindow.setPosition(pos.posX, pos.posY);
 });
 /**
- * 窗体重新加载 url
+ * 3.10窗体重新加载 url
  */
 ipcMain.on("reload", (event, pos) => {
   mainWindow && mainWindow.reload();
 });
 
 /**
- * 获取版本号（package.json）
+ * 3.11获取版本号（package.json）
  * @returns {string}
  */
 function getVersion() {
@@ -248,7 +242,7 @@ ipcMain.handle("getVersion", getVersion);
 /**
  *=========================================================================
  *=                                                                       =
- *=                       4.桌面应用自动更新                                 =
+ *=                            4.桌面应用自动更新                            =
  *=                                                                       =
  *=========================================================================
  */

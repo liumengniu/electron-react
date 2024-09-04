@@ -43,18 +43,14 @@
 
 ```
 开发环境
-先 npm run build:test:web
-再 npm run build
+npm run start
 
-正式环境
-先 npm run build:web
-再 npm run build
+生产环境
+npm run build
 
 启动测试环境： npm run start:web
 启动开发环境： npm run start 可以进行调试
 
-electron-builder 安装失败--需要设置淘宝镜像
-npm config set electron_mirror = "https://npm.taobao.org/mirrors/electron/"
 ```
 
 ## 3、生产部署流程
@@ -91,4 +87,20 @@ PS：有时候某些墙外依赖下载需要多尝试几次
 4、修改依赖表（package.json）的版本号，改为最新版本（比之前的版本要高）
 5、打包编译生产端，编译命令 build:linux （需要Linux环境，虚拟机真机都可以），然后将自动更新所需要的文件（xxx.AppImage,latest-linux.yml）上传至自动更新源目录地址(首次则不需要)
 PS：有时候某些墙外依赖下载需要多尝试几次
+```
+
+## 5、其他问题
+
+```
+1、electron  安装失败--需要设置镜像
+npm config set electron_mirror = "https://npmmirror.com/mirrors/electron/"
+
+2、wait-on 环境问题
+Node.js 16, 20 or 21 都没有问题，
+Node.js 18 需要监听 127.0.0.1来代替localhost
+
+3、自动更新问题
+远程地址上传.exe文件和 latest.yml即可自动更新
+上传exe.blockmap可以加速
+
 ```
