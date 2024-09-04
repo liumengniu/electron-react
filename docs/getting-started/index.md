@@ -15,4 +15,4 @@ npm run start
 ```
 
 完成上述步骤后，您应该有一个功能齐全的Electron程序，如下所示：
-![image](screenshot/electron-react.png)
+![image](./../../screenshot/electron-react.png)
