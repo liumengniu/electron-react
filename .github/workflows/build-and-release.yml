@@ -1,0 +1,65 @@
+name: crawler-client
+
+on:
+  push:
+    branches:
+      - master  # 在 'master' 分支有新的提交时触发
+    tags:
+      - 'v*.*.*'  # 在标签以 'v' 开头的提交时触发，例如 'v1.0.0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # 更新至 v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4  # 更新至 v4
+        with:
+          node-version: '20'  # 使用最新的 Node.js 版本
+
+      - name: Install Wine
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo mkdir -pm755 /etc/apt/keyrings
+          sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+          sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
+          sudo apt update
+          sudo apt install --install-recommends winehq-stable
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Get package version
+        id: get_version
+        run: echo "PACKAGE_VERSION=$(jq -r .version < package.json)" >> $GITHUB_ENV
+
+      - name: Build Electron App
+        run: npm run build  # 请根据你的项目设置构建命令
+
+      - name: Archive Artifacts
+        run: tar -czf release.tar.gz release  # 将构建产物打包成压缩文件
+        shell: bash
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.PACKAGE_VERSION  }}  # 使用正确的标签名
+          release_name: Release ${{ env.PACKAGE_VERSION  }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release.tar.gz  # 上传之前打包的文件
+          asset_name: release.tar.gz
+          asset_content_type: application/gzip
