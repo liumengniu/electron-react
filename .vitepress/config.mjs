@@ -14,7 +14,7 @@ export default defineConfig({
     logo: 'https://vitepress.dev/vitepress-logo-large.webp',
     nav: [
       { text: '首页', link: '/' },
-      { text: '示例', link: '/markdown-examples' }
+      { text: '示例', link: '/docs/development/project-structure' }
     ],
     sidebar: [
       {text: '简介', link: '/docs/introduction/index'},

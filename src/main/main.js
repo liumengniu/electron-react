@@ -57,10 +57,11 @@ const createWindow = () => {
 
   mainWindow.maximize();
 
+  console.log(mode,'===========mode=========================', mode === "dev")
   // 加载 index.html
   if (mode === "dev") {
     mainWindow.loadURL("http://localhost:1718");
-  } {
+  } else {
     mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html")); // 生产环境
   }
 
