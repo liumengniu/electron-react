@@ -4,9 +4,7 @@
  * @Date:
  */
 
-import _ from 'lodash'
-import TokenManager from '@utils/TokenManager'
-import { downLoadFile } from '@services/base'
+import { downLoadFile } from '@/renderer/api/base'
 
 const utils = {
 	/**

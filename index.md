@@ -3,23 +3,26 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "electron-react脚手架"
+  text: "electron-react脚手架文档"
+  tagline: 简单易上手的的electron+react脚手架
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: 概念
+      link: /docs/introduction/index
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: 快速开始
+      link: /docs/getting-started/index
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: ⚡️
+    title: 简单易上手
+    details: 仅需一行命令即可开始，省去了各种配置时间
+  - icon: 🚀
+    title: 极简配置
+    details: 删去了各种复杂的依赖和库，仅保留了渲染进程和主进程，方便自定义开发，心智负担小
+  - icon: 📝
+    title: 该有的都有
+    details: 进程通信基础方法，各个环境（包括amd和ram架构，甚至国产麒麟系统）的配置，自动更新的方法等
 ---
 

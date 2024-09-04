@@ -11,7 +11,7 @@
 
 import _ from 'lodash'
 import qs from 'qs'
-import TokenManager from '@utils/TokenManager'
+import TokenManager from '@/utils/TokenManager'
 import {useNavigate} from "react-router-dom";
 
 let mock = false
