@@ -5,7 +5,7 @@ export default defineConfig({
   base: '/electron-react/',
   lang: 'zh-CN',
   title: "electron-react脚手架",
-  description: "A VitePress Site",
+  description: "electron-react 文档",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
