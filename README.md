@@ -105,3 +105,9 @@ Node.js 18 需要监听 127.0.0.1来代替localhost
 上传exe.blockmap可以加速
 
 ```
+
+## 🌟 Star History
+
+<br>
+
+[![Star History Chart](https://api.star-history.com/svg?repos=liumengniu/electron-react&type=Timeline)](https://api.star-history.com/svg?repos=liumengniu/electron-react&type=Timeline)

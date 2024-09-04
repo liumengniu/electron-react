@@ -12,8 +12,7 @@ cd electron-react
 npm i
 npm run start
 
-#从
-
 ```
 
 完成上述步骤后，您应该有一个功能齐全的Electron程序，如下所示：
+![image](screenshot/electron-react.png)
