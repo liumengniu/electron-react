@@ -31,6 +31,7 @@
     "test": "electron . test",
     "build:test:web": "env-cmd -f .env.test craco build",
     "build:web": "cross-env REACT_APP_ENVIRONMENT=production craco build --win",
+    "build:test": "rimraf build && env-cmd -f .env.test craco build && rimraf release && electron-builder",
     "build": "rimraf build && npm run build:web && rimraf release && electron-builder",
     "build:deb": "electron-builder --linux deb tar.xz",
     "build:deb:arm64": "electron-builder --linux deb --arm64",

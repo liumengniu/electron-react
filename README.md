@@ -1,7 +1,7 @@
 ## 1、项目结构
 
 ```
-├── electron-basic  # 桌面应用
+├── electron-react         # 桌面应用
 ├── build                  # web包编译后资源目录
 ├── extraResources         # 视窗额外打包文件（比如各种执行的cmd/py脚本）
 ├── public                 # web包编译前资源目录
@@ -45,11 +45,12 @@
 开发环境
 npm run start
 
-生产环境
+编译生产环境
 npm run build
 
-启动测试环境： npm run start:web
-启动开发环境： npm run start 可以进行调试
+编译测试or仿真环境 
+npm run build:test
+
 
 ```
 
