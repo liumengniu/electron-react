@@ -6,6 +6,9 @@ hero:
   name: "electron-react脚手架"
   text: "electron-react脚手架文档"
   tagline: 简单易上手的的electron+react脚手架
+  image:
+      src: https://vitepress.dev/vitepress-logo-large.webp
+      alt: electron+react
   actions:
     - theme: brand
       text: 概念

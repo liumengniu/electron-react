@@ -11,6 +11,7 @@ export default defineConfig({
     ["meta", {name:"referrer", content:"no-referrer"}],
   ],
   themeConfig: {
+    logo: 'https://vitepress.dev/vitepress-logo-large.webp',
     nav: [
       { text: '首页', link: '/' },
       { text: '示例', link: '/markdown-examples' }
